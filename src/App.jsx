@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
-import Home from './components/Home'
-import Signin from './components/Signin'
-import Signout from './components/Signout'
-import About from './components/About'
-import Profile from './components/Profile'
+import Home from './pages/Home'
+import Signin from './pages/Signin'
+import Signout from './pages/Signout'
+import About from './pages/About'
+import Profile from './pages/Profile'
 
 function App() {
-  console.log('jello')
   return (
     <>
       <BrowserRouter>
