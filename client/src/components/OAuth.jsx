@@ -3,25 +3,27 @@ import { app } from '../firebase';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '../redux/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function OAuth() {
     const dispatch = useDispatch();
-
+    const Navigate=useNavigate()
+    
     const handleGoogleAuth = async () => {
         try {
             const provider = new GoogleAuthProvider();
-            const auth = getAuth(app); // Ensure the app instance is passed correctly
+            const auth = getAuth(app);
             const result = await signInWithPopup(auth, provider);
 
-            const user = result.user; // Ensure the user object is correctly accessed
+            const user = result.user; 
 
-            const res = await fetch('/api/auth/google', { // Properly await fetch
+            const res = await fetch('/api/auth/google', { 
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json', // Ensure the header key is correctly named
+                    'Content-Type': 'application/json', 
                 },
                 body: JSON.stringify({
-                    name: user.displayName, // Use displayName instead of name
+                    name: user.displayName, 
                     email: user.email,
                     image: user.photoURL
                 })
@@ -34,6 +36,7 @@ function OAuth() {
             const data = await res.json();
             console.log(data);
             dispatch(signInSuccess(data));
+            Navigate("/");
         } catch (error) {
             console.log("Could not sign in with Google", error);
         }
