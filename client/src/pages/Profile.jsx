@@ -126,8 +126,8 @@ export default function Profile() {
                 filePercentage > 0 && filePercentage < 100 ? (
                   <span className='text-slate-600'>{filePercentage} % uploaded</span>
                 ) : filePercentage === 100 ?
-                  (<span className='text-green-500'>File upload Success</span>) :
-                  ""
+                (<span className='text-green-500'>File upload Success</span>) :
+                ""
               )
           }
         </p>
@@ -138,7 +138,7 @@ export default function Profile() {
           id='username'
           className='border p-3 rounded-lg'
           onChange={handleChange}
-        />
+          />
         <input
           type='email'
           placeholder='email'
