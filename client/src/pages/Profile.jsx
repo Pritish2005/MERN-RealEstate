@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from '../firebase';
 import {
@@ -27,6 +28,7 @@ export default function Profile() {
       handleFile(file);
     }
   }, [file]);
+  
 
   const handleFile = (file) => {
     const storage = getStorage(app);
@@ -157,6 +159,12 @@ export default function Profile() {
         <button type='submit' disabled={loading} className='bg-slate-800 text-white rounded-lg p-3 uppercase hover:opacity-90'>
           {loading?"...loading":"Update"}
         </button>
+        <Link
+          className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'
+          to={'/create-listing'}
+        >
+          Create Listing
+        </Link>
       </form>
       <div className="flex justify-between">
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete Account</span>
